@@ -27,9 +27,7 @@ export default function Register() {
             <Head title="Register" />
 
             <form onSubmit={submit}>
-                <div>
-                    <h1 className='text-center text-[#402979] font-semibold font-inter text-[28px]'>REGISTER</h1>
-                </div>
+                
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -37,7 +35,7 @@ export default function Register() {
                         id="name"
                         name="name"
                         value={data.name}
-                        className="mt-1 block w-full bg-white"
+                        className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
@@ -109,9 +107,9 @@ export default function Register() {
                 <div className="mt-4 flex items-center justify-end">
                     <Link
                         href={route('login')}
-                        className="rounded-md text-sm text-purple-900 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
                     >
-                        Sudah Punya Akun?
+                        Already registered?
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
