@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pemulihans', function (Blueprint $table) {
             $table->id();
             $table->string("tujuan");
-            $table->integer("hari");
+            $table->string("hari");
             $table->text("catatan");
             $table->timestamps();
         });

@@ -35,7 +35,7 @@ class PemulihanController extends Controller
     {
        $data = $request->validate([
             "tujuan" => "required|string",
-            "hari" => "required|integer",
+            "hari" => "required|string",
             "catatan" => "required"
         ]);
 

@@ -7,48 +7,19 @@ import { useForm } from "@inertiajs/react";
 import { FormEventHandler, useRef, useState } from "react";
 
 function Create() {
-    const selectorRef = useRef<HTMLDivElement>(null);
-    const sliderRef = useRef<HTMLInputElement>(null);
-    const progressRef = useRef<HTMLDivElement>(null);
-    const [sliderValue, setSliderValue] = useState(0);
 
+    const { data, setData, processing, errors, post } = useForm({
+        tujuan: "",
+        hari: "",
+        catatan: "",
+    });
 
-    const {data, setData, processing,errors,post} = useForm({
-      tujuan: "",
-      hari:"",
-      catatan:""
-    })
+    const createCatatan: FormEventHandler = (ev) => {
+        ev.preventDefault();
 
-    const createCatatan: FormEventHandler= (ev) => {
-      ev.preventDefault()
-
-      post(route("pemulihan.store"), {
-        preserveScroll: true,
-      })
-    }
-
-    const handleSliderInput = () => {
-        const selector = selectorRef.current;
-        const slider = sliderRef.current;
-        const progress = progressRef.current;
-
-        if (selector && slider && progress) {
-            const min = Number(slider.min);
-            const max = Number(slider.max);
-            const val = Number(slider.value);
-
-            setSliderValue(val);
-
-            const sliderWidth = slider.offsetWidth;
-            const percent = (val - min) / (max - min);
-            const pixelPos = percent * sliderWidth;
-
-            // Set selector left directly, and use transform to center
-            selector.style.left = `${pixelPos}px`;
-
-            // Update progress bar
-            progress.style.width = `${percent * 100}%`;
-        }
+        post(route("pemulihan.store"), {
+            preserveScroll: true,
+        });
     };
 
     return (
@@ -91,9 +62,9 @@ function Create() {
                                 isFocused={true}
                                 placeholder="Contoh: bebas judi dalam 1 bulan/30 hari"
                                 value={data.tujuan}
-                                onChange={ (e) =>{
-                                  setData("tujuan", e.target.value)
-                                } }
+                                onChange={(e) => {
+                                    setData("tujuan", e.target.value);
+                                }}
                             />
                         </div>
 
@@ -104,64 +75,41 @@ function Create() {
                             />
                         </div>
 
-                        <div className="relative w-full pt-6">
-                            {/* Progress bar background */}
-                            <div className="absolute top-[22px] left-0 w-full h-[7px] bg-gray-300 rounded-full z-0"></div>
+                        <input
+                            type="date"
+                            name="hari"
+                            id="hari"
+                            value={data.hari}
+                            onChange={(e) => {
+                                setData("hari", e.target.value)
+                            }}
+                            className="rounded-md border-[#760686] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-transparent dark:focus:border-indigo-600 dark:focus:ring-indigo-600 mb-8"
+                        />
 
-                            {/* Progress bar fill */}
-                            <div
-                                ref={progressRef}
-                                className="absolute top-[22px] left-0 h-[7px] bg-purple-600 rounded-full z-1 transition-all duration-300"
-                                style={{ width: "0%" }}
-                            ></div>
-
-                            <input
-                                ref={sliderRef}
-                                onInput={handleSliderInput}
-                                className="slider relative z-10"
-                                type="range"
-                                min="0"
-                                max="30"
-                                name="hari"
-                                value={data.hari}
-                                onChange={ (e) =>{
-                                  setData("hari", e.target.value)
-                                } }
-                            />
-
-                            {/* Selector and value */}
-                            <div
-                                className="selector transition-all duration-300"
-                                ref={selectorRef}
-                                style={{ left: 0 }}
-                            >
-                                <div className="selecbtn bg-purple-600"></div>
-                                <div className="selectvalue text-white text-sm text-center mt-1 tooltip">
-                                    {sliderValue}
-                                </div>
-                            </div>
-                        </div>
                         {/* catatan harian */}
                         <div>
                             <InputLabel
                                 htmlFor="catatan"
                                 value="Catatan Harian"
                             />
-                            
+
                             <TextAreaInput
                                 id="catatan"
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full h-96"
                                 placeholder="Tuliskan kesan, perasaan dan perkembanganmu hari ini........"
                                 value={data.catatan}
-                                onChange={ (e) =>{
-                                  setData("catatan", e.target.value)
-                                } }
+                                onChange={(e) => {
+                                    setData("catatan", e.target.value);
+                                }}
                                 name="catatan"
                             />
                         </div>
 
                         <div>
-                            <PrimaryButton className="ms-4 flex gap-2 ml-0 mt-10" disabled={processing}>
+                            <PrimaryButton
+                                className="ms-4 flex gap-2 ml-0 mt-10"
+                                disabled={processing}
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
