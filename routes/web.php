@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PemulihanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -14,6 +15,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get("/forum", [ForumController::class, "index"])->name("forum.index");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

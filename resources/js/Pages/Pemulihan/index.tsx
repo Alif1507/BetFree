@@ -63,7 +63,7 @@ function index({ pemulihans }: PaginatedData<Pemulihan>) {
             <div className="flex justiFfy-center items-center mt-10 mx-64">
                 <div className="grid grid-cols-3 gap-x-10 gap-y-24">
                     {pemulihans.data.map((pemulihan) => (
-                        <PemulihanCard tujuan={pemulihan.tujuan} hari={pemulihan.hari} catatan={pemulihan.catatan} />
+                        <PemulihanCard tujuan={pemulihan.tujuan} hari={pemulihan.hari} catatan={pemulihan.catatan} id={pemulihan.id}  />
                     ))}
                 </div>
             </div>

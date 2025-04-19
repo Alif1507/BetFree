@@ -74,6 +74,8 @@ class PemulihanController extends Controller
      */
     public function destroy(Pemulihan $pemulihan)
     {
-        //
+        $pemulihan->delete();
+
+        return to_route("pemulihan.index")->with("message", "Catatan Selesai");
     }
 }
