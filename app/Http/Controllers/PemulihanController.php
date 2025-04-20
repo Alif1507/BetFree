@@ -14,7 +14,7 @@ class PemulihanController extends Controller
      */
     public function index()
     {
-        $paginated = Pemulihan::latest()->paginate(6);
+        $paginated = Pemulihan::where("user_id", auth()->id())->latest()->paginate(6);
         return Inertia::render("Pemulihan/index",[
             'pemulihans' => PemulihanResource::collection($paginated)
         ]);
@@ -38,6 +38,8 @@ class PemulihanController extends Controller
             "hari" => "required|string",
             "catatan" => "required"
         ]);
+
+        $data["user_id"] = auth()->id();
 
         Pemulihan::create($data);
 

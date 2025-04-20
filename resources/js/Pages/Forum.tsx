@@ -51,7 +51,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
 
     return (
         <AuthenticatedLayout>
-            <div className="flex flex-col min-h-screen relative gap-16 z-20 bg-gradient-to-r from-slate-50 to-purple-300">
+            <div className="flex flex-col min-h-screen relative gap-16 bg-gradient-to-r from-slate-50 to-purple-300">
                 <div className="flex justify-evenly items-center mt-10">
                     <div className="w-[630px] p-4 rounded-2xl bg-white">
                         <Textarea
@@ -224,31 +224,33 @@ function Forum({ forums }): PaginatedData<Forumss> {
                         </AlertDialog>
                     </div>
                 </div>
-                <div className="ml-30 flex flex-col gap-20">
+                <div className="ml-30 flex flex-col gap-20 mr-30">
                     {forums.data.map((forum) => (
                         <div
                             key={forum.id}
-                            className="w-[630px] min-h-[221px] p-7 border-black border-2 rounded-2xl flex flex-col gap-10 text-start  bg-white"
+                            className="max-w-[630px] min-h-[221px] p-7 border-black border-2 rounded-2xl flex flex-col gap-4 text-start  bg-white shadow-2xl"
                         >
                             <div className="gap-1 flex flex-col">
                                 <h1 className="font-bold font-inter text-black text-xl">
                                     {forum.user.name}
                                 </h1>
-                                <h2 className="font-inter text-black text-xl">
+                                <h2 className="font-inter text-black text-xl font-light">
                                     {forum.judul}
                                 </h2>
                             </div>
+
+                            <hr />
 
                             <div className="gap-3 flex flex-col">
                                 <h1 className="text-black text-2xl font-inter font-bold">
                                     {forum.deskripsi}
                                 </h1>
-                                {(forum.body || "").length > 200 && (
+                                {(forum.body).length > 200 && (
                                     <>
-                                        <p>
+                                        <p className="text-wrap">
                                             {isExpanded
                                                 ? forum.body
-                                                : `${(forum.body || "").slice(
+                                                : `${(forum.body).slice(
                                                       0,
                                                       200
                                                   )}.....`}

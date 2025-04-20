@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\forumResource;
 use App\Models\Forum;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -64,9 +65,15 @@ class ForumController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Forum $forum)
+    public function edit($id)
     {
-        //
+        $data = Forum::findOrfail($id);
+
+        return Inertia::render("forum/create", [
+            "dataa" => new forumResource($data)
+        ]);
+
+        // Gate::authorize("update", $data);
     }
 
     /**
