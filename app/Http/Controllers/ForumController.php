@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\forumResource;
 use App\Models\Forum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,7 +14,10 @@ class ForumController extends Controller
      */
     public function index()
     {
-        return Inertia::render("Forum");
+        $paginated = Forum::with("user")->latest()->paginate(6);
+        return Inertia::render("Forum", [
+            'forums' => forumResource::collection($paginated)
+        ]);
     }
 
     /**
@@ -29,7 +33,24 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(
+            [
+                "judul" => "required|string",
+                "deskripsi" => "required|string",
+                "body" => "required|string"
+            ],
+            [
+                'judul.required' => 'Judul wajib diisi.',
+                'deskripsi.required' => 'Deskripsi tidak boleh kosong.',
+                'body.required' => 'Isi pertanyaan atau cerita tidak boleh kosong.',
+            ]
+        );
+
+        $data['user_id'] = auth()->id();
+
+        Forum::create($data);
+
+        return to_route('forum.index')->with("message", "Forum Berhasil dibuat");
     }
 
     /**

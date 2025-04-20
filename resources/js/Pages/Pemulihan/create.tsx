@@ -1,3 +1,4 @@
+import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextAreaInput from "@/Components/TextAreaInput";
@@ -7,7 +8,6 @@ import { useForm } from "@inertiajs/react";
 import { FormEventHandler, useRef, useState } from "react";
 
 function Create() {
-
     const { data, setData, processing, errors, post } = useForm({
         tujuan: "",
         hari: "",
@@ -52,6 +52,11 @@ function Create() {
                             <InputLabel htmlFor="tujuan" value="Tujuan Utama" />
                         </div>
 
+                        <InputError
+                                message={errors.tujuan}
+                                className="mt-2"
+                            />
+
                         <div>
                             <TextInput
                                 id="tujuan"
@@ -75,13 +80,18 @@ function Create() {
                             />
                         </div>
 
+                        <InputError
+                                message={errors.hari}
+                                className="mt-2"
+                            />
+
                         <input
                             type="date"
                             name="hari"
                             id="hari"
                             value={data.hari}
                             onChange={(e) => {
-                                setData("hari", e.target.value)
+                                setData("hari", e.target.value);
                             }}
                             className="rounded-md border-[#760686] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-transparent dark:focus:border-indigo-600 dark:focus:ring-indigo-600 mb-8"
                         />
@@ -93,9 +103,13 @@ function Create() {
                                 value="Catatan Harian"
                             />
 
+                            <InputError
+                                message={errors.catatan}
+                                className="mt-2"
+                            />
                             <TextAreaInput
                                 id="catatan"
-                                className="mt-1 block w-full h-96"
+                                className="mt-1 block w-full h-32"
                                 placeholder="Tuliskan kesan, perasaan dan perkembanganmu hari ini........"
                                 value={data.catatan}
                                 onChange={(e) => {

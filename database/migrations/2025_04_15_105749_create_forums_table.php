@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
+            $table->string("judul");
+            $table->string("deskripsi");
+            $table->foreignId("user_id")->nullable()->constrained()->onDelete("cascade");
+            $table->text("body");
             $table->timestamps();
         });
     }

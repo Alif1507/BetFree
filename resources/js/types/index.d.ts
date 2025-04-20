@@ -21,6 +21,19 @@ export type Pemulihan = {
 
 }
 
+export interface Forumss {
+    id: number;
+    judul: string;
+    deskripsi: string;
+    body: string;
+    created_at: string;
+    user: {
+      id: number;
+      name: string;
+      email: string;
+    };
+  }
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {

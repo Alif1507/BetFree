@@ -16,7 +16,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get("/forum", [ForumController::class, "index"])->name("forum.index");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -26,8 +25,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    
     Route::resource("/pemulihan", PemulihanController::class);
+
+    Route::get("/forum", [ForumController::class, "index"])->name("forum.index");
+    Route::post("/forum", [ForumController::class, "store"])->name("forum.store");
 });
 
 require __DIR__.'/auth.php';
