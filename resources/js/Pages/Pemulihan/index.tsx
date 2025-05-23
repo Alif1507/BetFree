@@ -7,7 +7,7 @@ function index({ pemulihans }: PaginatedData<Pemulihan>) {
   
     return (
         <AuthenticatedLayout>
-            <div className="ml-10 mt-10">
+            <div className="ml-20 mt-10">
                 <Link href={route("pemulihan.create")}>
                     <button className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group">
                         <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4">
@@ -38,7 +38,7 @@ function index({ pemulihans }: PaginatedData<Pemulihan>) {
                 </Link>
             </div>
 
-            <div className="py-12 px-4">
+            <div className="py-12 px-4 ml-19">
                 {pemulihans.meta.links.map((link) =>
                     link.url ? (
                         <Link

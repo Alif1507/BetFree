@@ -90,7 +90,15 @@ export default function Login({
                     </label>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
+                <div className="mt-4 flex items-center justify-end gap-4">
+                    <div>
+                        <Link
+                            href={route('register')}>
+                            <h1 className="text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                Belum punya akun? Daftar
+                            </h1>
+                        </Link>
+                    </div>
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
