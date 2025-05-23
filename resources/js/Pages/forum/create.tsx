@@ -1,106 +1,113 @@
-import React from 'react'
+import React from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import InputLabel from '@/Components/InputLabel';
-import InputError from '@/Components/InputError';
-import { Input, Textarea } from '@headlessui/react';
-import PrimaryButton from '@/Components/PrimaryButton';
-import { Head, useForm } from '@inertiajs/react';
-import { Forumss, PaginatedData } from '@/types';
+import InputLabel from "@/Components/InputLabel";
+import InputError from "@/Components/InputError";
+import { Input, Textarea } from "@headlessui/react";
+import PrimaryButton from "@/Components/PrimaryButton";
+import { Head, useForm } from "@inertiajs/react";
+import { Forumss, PaginatedData } from "@/types";
 
+function create({ dataa }): PaginatedData<Forumss> {
+    let forum = dataa.data;
 
-function create({dataa}): PaginatedData<Forumss> {
-  let forum = dataa.data
-  
+    const { data, setData, errors, put, processing } = useForm({
+        judul: forum.judul,
+        deskripsi: forum.deskripsi,
+        body: forum.body,
+    });
 
-  const {data, setData, errors, put, processing} = useForm({
-    judul: forum.judul,
-    deskripsi: forum.deskripsi,
-    body: forum.body
-  })
+    return (
+        <AuthenticatedLayout>
+            <Head title="Edit Forum" />
 
-  
-  
+            <div className="container mx-auto py-8">
+                <form className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+                    <div className="space-y-6">
+                        {/* Judul Field */}
+                        <div className="form-group">
+                            <InputLabel
+                                htmlFor="judul"
+                                className="mb-2"
+                            >
+                                Judul
+                            </InputLabel>
+                            <Input
+                                type="text"
+                                id="judul"
+                                name="judul"
+                                placeholder="Masukkan judul"
+                                value={data.judul}
+                                onChange={(e) => setData("judul", e.target.value)}
+                                className="w-full rounded-md"
+                            />
+                            <InputError
+                                message={errors.judul}
+                                className="mt-2"
+                            />
+                        </div>
 
+                        {/* Deskripsi Field */}
+                        <div className="form-group">
+                            <InputLabel
+                                htmlFor="deskripsi"
+                                className="mb-2"
+                            >
+                                Deskripsi
+                            </InputLabel>
+                            <Input
+                                type="text"
+                                id="deskripsi"
+                                name="deskripsi"
+                                placeholder="Masukkan deskripsi"
+                                value={data.deskripsi}
+                                onChange={(e) =>
+                                    setData("deskripsi", e.target.value)
+                                }
+                                className="w-full rounded-md"
+                            />
+                            <InputError
+                                message={errors.deskripsi}
+                                className="mt-2"
+                            />
+                        </div>
 
-  return (
-    <AuthenticatedLayout>
+                        {/* Body Field */}
+                        <div className="form-group">
+                            <InputLabel
+                                htmlFor="body"
+                                className="mb-2"
+                            >
+                                Konten
+                            </InputLabel>
+                            <Textarea
+                                id="body"
+                                name="body"
+                                value={data.body}
+                                onChange={(e) => setData("body", e.target.value)}
+                                placeholder="Tuliskan pertanyaan atau bagikan pengalaman/saran......."
+                                className="w-full h-40 rounded-md"
+                            />
+                            <InputError
+                                message={errors.body}
+                                className="mt-2"
+                            />
+                        </div>
 
-      <Head title='Edit Forum' />
-
-        <div className='flex justify-center items-center mt-10'>
-        <form className='border-black border-3 rounded-2xl p-3 flex flex-col gap-3 max-w-96'>
-                                            <div className="my-3 gap-3">
-                                                <InputLabel htmlFor="judul">
-                                                    Judul
-                                                </InputLabel>
-                                                <InputError
-                                                    message={errors.judul}
-                                                    className="mt-2"
-                                                />
-
-                                                <Input
-                                                    type="text"
-                                                    id="judul"
-                                                    placeholder="judul"
-                                                    name="judul"
-                                                    value={data.judul}
-                                                    onChange={(e) =>
-                                                        setData(
-                                                            "judul",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-
-                                                <InputLabel htmlFor="deskripsi">
-                                                    Deskripsi
-                                                </InputLabel>
-                                                <InputError
-                                                    message={errors.deskripsi}
-                                                    className="mt-2"
-                                                />
-                                                <Input
-                                                    type="text"
-                                                    id="deskripsi"
-                                                    placeholder="deskripsi"
-                                                    name="deskripsi"
-                                                    value={data.deskripsi}
-                                                    onChange={(e) =>
-                                                        setData(
-                                                            "deskripsi",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-                                            </div>
-                                            <InputError
-                                                    message={errors.body}
-                                                    className="mt-2"
-                                                />
-                                            <Textarea
-                                                id="body"
-                                                value={data.body}
-                                                name="body"
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "body",
-                                                        e.target.value
-                                                    )
-                                                } // 🔄 sync here
-                                                placeholder="Tuliskan pertanyaan atau bagikan pengalaman/saran......."
-                                                className="h-40 max-w-110 mb-3"
-                                            />
-                                            <PrimaryButton
-                                                className="mr-4"
-                        
-                                                disabled={processing}
-                                            >
-                                                Kirim
-                                            </PrimaryButton>
-                                        </form>
-        </div>
-    </AuthenticatedLayout>
-  )
+                        {/* Submit Button */}
+                        <div className="flex justify-end">
+                            <PrimaryButton
+                                type="submit"
+                                disabled={processing}
+                                className="px-6"
+                            >
+                                Kirim
+                            </PrimaryButton>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </AuthenticatedLayout>
+    );
 }
 
-export default create
+export default create;
