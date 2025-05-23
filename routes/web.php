@@ -3,6 +3,7 @@
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PemulihanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QnaController;
 use App\Http\Resources\forumResource;
 use App\Models\Forum;
 use Illuminate\Foundation\Application;
@@ -30,8 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
+
     Route::resource("/pemulihan", PemulihanController::class);
+    Route::resource("/qna", QnaController::class);
 
     Route::get("/forum", [ForumController::class, "index"])->name("forum.index");
     Route::post("/forum", [ForumController::class, "store"])->name("forum.store");

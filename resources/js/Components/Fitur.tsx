@@ -1,0 +1,33 @@
+import { Link } from '@inertiajs/react';
+import React from 'react'
+
+const Fitur = () => {
+  return (
+    <div className='mt-24 w-full py-7 bg-[#760686] relative text-center text-white h-[520px] justify-center items-center'>
+        <img src="/gambar/e (33) 1.png" alt="" className='absolute right-0'/>
+        <div className='flex justify-center w-auto'>
+            <h1 className='text-3xl font-[inter] p-12'>3 Fitur Yang Dapat Membantu Anda</h1>
+        </div>
+        <div className='flex justify-center items-center gap-28 px-4 mt-7'>
+            <div>
+                <Link href='/qna'>
+                    <img src="/gambar/e (29) 2.png" alt="" />
+                </Link>
+                <h1 className='mt-5'>Pertanyaan</h1>
+            </div>
+                <div className='bg-[#ffff] rounded-full w-1 h-44'>.</div>
+            <div>
+                <img src="/gambar/e (32) 2.png" alt="" />
+                <h1 className='mt-5'>Forum</h1>
+            </div>
+            <div className='bg-[#ffff] rounded-full w-1 h-44'>.</div>
+            <div>
+                <img src="/gambar/e (31) 1.png" alt=""/>
+                <h1 className='mt-5'>Rencana Buatan</h1>
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default Fitur
