@@ -36,7 +36,13 @@ class PemulihanController extends Controller
        $data = $request->validate([
             "tujuan" => "required|string",
             "hari" => "required|string",
-            "catatan" => "required"
+            "catatan" => "required|max:100"
+       ],
+        [
+            "tujuan.required" => "Tujuan tidak boleh kosong",
+            "hari.required" => "Hari tidak boleh kosong",
+            "catatan.required" => "Catatan tidak boleh kosong",
+            "catatan.max" => "Catatan maksimal 100 karakter"
         ]);
 
         $data["user_id"] = auth()->id();

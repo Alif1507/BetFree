@@ -15,7 +15,8 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 inter: ['Inter', "sans-serif"],
-                mons: ['Montserrat', "sans-serif"]
+                mons: ['Montserrat', "sans-serif"],
+                pop: ['Poppins', "sans-serif"],
             },
         },
     },
