@@ -11,19 +11,19 @@ const Fitur = () => {
         <div className='flex justify-center items-center gap-28 px-4 mt-7'>
             <div>
                 <Link href='/qna'>
-                    <img src="/gambar/e (29) 2.png" alt="" />
+                    <img src="/gambar/e (29) 2.png" alt="" className='hover:scale-110 transition'/>
                 </Link>
-                <h1 className='mt-5'>Pertanyaan</h1>
+                <h1 className='mt-5 text-lg'>Pertanyaan</h1>
             </div>
                 <div className='bg-[#ffff] rounded-full w-1 h-44'>.</div>
             <div>
-                <img src="/gambar/e (32) 2.png" alt="" />
-                <h1 className='mt-5'>Forum</h1>
+                <img src="/gambar/e (32) 2.png" alt="" className='hover:scale-110 transition cursor-pointer' />
+                <h1 className='mt-5 text-lg'>Forum</h1>
             </div>
             <div className='bg-[#ffff] rounded-full w-1 h-44'>.</div>
             <div>
-                <img src="/gambar/e (31) 1.png" alt=""/>
-                <h1 className='mt-5'>Rencana Buatan</h1>
+                <img src="/gambar/e (31) 1.png" alt="" className='hover:scale-110 transition cursor-pointer'/>
+                <h1 className='mt-5 text-lg'>Rencana Buatan</h1>
             </div>
         </div>
     </div>

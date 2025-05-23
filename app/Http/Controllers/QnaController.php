@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\qna;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class QnaController extends Controller
 {
@@ -12,7 +14,7 @@ class QnaController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render("Forms");
     }
 
     /**
