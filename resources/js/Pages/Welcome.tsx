@@ -1,3 +1,4 @@
+import Berita from '@/Components/Berita';
 import Fitur from '@/Components/Fitur';
 import Hero from '@/Components/Hero';
 import PemulihanCard from '@/Components/PemulihanCard';
@@ -40,7 +41,13 @@ const Welcome = ({
                                 <main className='h-[2000px]'>
                                     <Hero />
                                     <Fitur />
-                                    <Visimisi />
+                                  <div className='mt-[269px]'>
+                                      <Visimisi />
+                                  </div>
+                                  <Berita />
+                                  <div className='mt-[269px]'>
+                                    <Statistik />
+                                  </div>
                                 </main>
 
 
