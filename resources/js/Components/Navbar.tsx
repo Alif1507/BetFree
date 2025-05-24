@@ -11,11 +11,11 @@ const Navbar = () => {
             <a href="" className='mx-4 font-[inter] text-lg'>Tentang</a>
             <a href="" className='mx-4 font-[inter] text-lg'>Edukasi</a>
             <a href="" className='ml-4 mr-10 font-[inter] text-lg'>Berita</a>
-            <button className='bg-[#6742A9] rounded-2xl w-25 h-10 text-[#FFFFFF] font-[inter] text-'>Login</button>
         </div>
     </nav>
 
-  )
+)
 }
 
 export default Navbar
+{/* <button className='bg-[#6742A9] rounded-2xl w-25 h-10 text-[#FFFFFF] font-[inter] text-'>Login</button> */}
