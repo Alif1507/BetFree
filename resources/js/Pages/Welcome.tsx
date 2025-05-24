@@ -40,7 +40,6 @@ const Welcome = ({
                                 <main className='h-[2000px]'>
                                     <Hero />
                                     <Fitur />
-                                    <Visimisi />
                                 </main>
 
 
