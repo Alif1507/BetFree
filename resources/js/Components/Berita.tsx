@@ -169,15 +169,15 @@ const Berita: React.FC = () => {
       </div>
 
       <div className='flex items-center justify-evenly mt-10 w-full'>
-        <div onClick={clickHari} className={`flex flex-col items-center gap-2 ${hari ? "" : 'opacity-40'}`}>
-        <h1 className={`text-3xl font-semibold ${hari ? "" : "cursor-pointer"}`}>HARI INI</h1>
+        <div onClick={clickHari} className={`flex flex-col  items-center gap-2 transition-all duration-150 hover:opacity-100 ${hari ? "" : 'opacity-40'}  ${bulan ? "" : "cursor-pointer"}`}>
+        <h1 className={`text-3xl font-semibold  ${hari ? "" : "cursor-pointer"}`}>HARI INI</h1>
         <hr className='border-purple-900 border-2 w-[288px]' />
         </div>
-        <div onClick={clickMinggu} className={`flex flex-col items-center gap-2 ${minggu ? "" : 'opacity-40'}`}>
+        <div onClick={clickMinggu} className={`flex flex-col transition-all duration-150 hover:opacity-100 items-center gap-2 ${minggu ? "" : 'opacity-40'} ${bulan ? "" : "cursor-pointer"}`}>
         <h1 className={`text-3xl font-semibold ${minggu ? "" : "cursor-pointer"}`}>MINGGU INI</h1>
         <hr className='border-purple-900 border-2 w-[288px]' />
         </div>
-        <div onClick={clickBulan} className={`flex flex-col items-center gap-2 ${bulan ? "" : 'opacity-40'}`}>
+        <div onClick={clickBulan} className={`flex flex-col transition-all duration-150 hover:opacity-100 items-center gap-2 ${bulan ? "" : 'opacity-40'} ${bulan ? "" : "cursor-pointer"}`}>
         <h1 className={`text-3xl font-semibold ${bulan ? "" : "cursor-pointer"}`}>BULAN INI</h1>
         <hr className='border-purple-900 border-2 w-[288px]' />
         </div>
