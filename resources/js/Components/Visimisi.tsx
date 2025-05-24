@@ -2,7 +2,7 @@ import React from 'react'
 
 function Visimisi() {
   return (
-    <div className='flex ml-64'>
+    <div className='flex ml-32'>
       <div className=''>
       <h1 className='font-bold text-4xl mb-5'>VISI MISI KAMI</h1>
       <p className='text-2xl max-w-[800px]'>  
