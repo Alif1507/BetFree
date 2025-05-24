@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { Link } from '@inertiajs/react';
 
 const Hero = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
@@ -49,10 +50,12 @@ const Hero = () => {
           </h2>
         </div>
 
+        <Link href='/chatbot'>
         <button className='flex border-2 border-[#3F00D6] w-[120px] items-center justify-center h-[40px] rounded-xl mt-7 cursor-pointer hover:bg-[#3F00D6]'>
-          <img src="/gambar/bibot-removebg-preview 1.png" alt="" />
-          <p className='text-[#210070] font-medium ml-2'>Bibot</p>
+            <img src="/gambar/bibot-removebg-preview 1.png" alt="" />
+            <p className='text-[#210070] font-medium ml-2'>Bibot</p>
         </button>
+        </Link>
       </div>
     </div>
   );

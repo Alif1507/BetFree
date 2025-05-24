@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PemulihanController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource("/pemulihan", PemulihanController::class);
     Route::resource("/qna", QnaController::class);
+    Route::get('/chatbot', [ChatbotController::class, 'index']);
+    Route::post('/chatbot', [ChatbotController::class, 'store']);
 
     Route::get("/forum", [ForumController::class, "index"])->name("forum.index");
     Route::post("/forum", [ForumController::class, "store"])->name("forum.store");
