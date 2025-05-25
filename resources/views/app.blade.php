@@ -21,6 +21,8 @@
     @viteReactRefresh
     @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
     @inertiaHead
+
+    <link rel="icon" href="{{ asset("B-removebg-preview 1.ico") }} typre="image/x-icon">
 </head>
 
 <body class="font-sans antialiased">
