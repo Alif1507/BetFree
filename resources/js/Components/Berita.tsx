@@ -166,78 +166,6 @@ const Berita: React.FC = () => {
       y: 0,
       transition: { duration: 0.5 }
     }
-<<<<<<< HEAD
-  ];
-
-  const newsDataBulan: NewsItem[] = [
-    {
-      img: "gambar/bulanan/image.png",
-     source: "detik.com",
-      title: "Deretan Kasus Judi Online Paling Menyedot Perhatian di Jawa Barat"
-    },
-    {
-      img: "gambar/bulanan/image-1.png",
-      source: "Tempo.co",
-      title: "Sederet Fakta Judi Online yang Disorot Publik Sepanjang 2024, Siapa Sosok Inisial T?"
-    },
-    {
-      img: "gambar/bulanan/image-2.png",
-      source: "Tribratanews Polda Jabar",
-      title: "Polda Jabar Ungkap Kasus Perjudian Online: Dua Tersangka Ditangkap, Diduga Kelola Website Judi dengan Omset Ratusan Juta Per Hari"
-    },
-    {
-      img: "gambar/bulanan/image-3.png",
-      source: "ANTARA News Makassar",
-      title: "Melihat sisi penindakan dalam pemberantasan judi 'online'"
-    },
-    {
-      img: "gambar/bulanan/image-4.png",
-      source: "BBC",
-      title: "Polisi tetapkan 24 tersangka sindikat judol Komdigi – Bagaimana modus operandi dan apa peran mereka?"
-    },
-    {
-      img: "gambar/bulanan/image-5.png",
-      source: "Suara.com",
-      title: "Meutya Hafid Pamer Capaian Jabat Komdigi 5 Bulan: Blokir 6 Juta Konten Judi Online"
-    },
-    {
-      img: "gambar/bulanan/image-6.png",
-      source: "Kompas.com",
-      title: "300 Kasus Judi Online Diungkap Polri Sepanjang Juni-November 2024, 370 Tersangka Ditangkap"
-    },
-    {
-      img: "gambar/bulanan/image-7.png",
-      source: "CNN Indonesia",
-      title: "Update Kasus Judi Online Komdigi: 23 Tersangka, 2 Masih Buron"
-    }
-  ];
-
-  const [hari, setHari] = useState(true)
-  const [minggu, setMinggu] = useState(false)
-  const [bulan, setBulan] = useState(false)
-
-  const clickHari = () => {
-    setHari(true)
-    setMinggu(false)
-    setBulan(false)
-  }
-
-  const clickMinggu = () => {
-    setHari(false)
-    setMinggu(true)
-    setBulan(false)
-  }
-
-  const clickBulan = () => {
-    setHari(false)
-    setMinggu(false)
-    setBulan(true)
-  }
-
-  return (
-    <div className='mt-32 flex flex-col items-center justify-center'>
-      <button className='bg-gradient-to-r from-[#2D4FA8] to-[#9747FF] text-white text-xl w-[230px] h-[50px] rounded-2xl'>
-=======
   };
 
   return (
@@ -247,7 +175,6 @@ const Berita: React.FC = () => {
         whileTap={{ scale: 0.95 }}
         className='bg-gradient-to-r from-[#2D4FA8] to-[#9747FF] text-white text-xl p-4 rounded-2xl shadow-lg'
       >
->>>>>>> 9a19a0d9a5d4917d53d8f0f8e184c019d9446109
         Cek Berita Sekarang
       </motion.button>
 
@@ -287,28 +214,6 @@ const Berita: React.FC = () => {
         ))}
       </div>
 
-<<<<<<< HEAD
-      <div className={`grid grid-cols-4 grid-rows-2 gap-5  mt-10 ${minggu ? "" : "hidden"}`}>
-        {newsDataMinggu.map((item, index) => (
-          <div key={index} className='flex flex-col gap-2'>
-            <img src={item.img} alt={item.title} />
-            <h1 className='text-xs'>{item.source}</h1>
-            <p className='max-w-[280px] text-sm'>{item.title}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className={`grid grid-cols-4 grid-rows-2 gap-5  mt-10 ${bulan ? "" : "hidden"}`}>
-        {newsDataBulan.map((item, index) => (
-          <div key={index} className='flex flex-col gap-2'>
-            <img src={item.img} alt={item.title} />
-            <h1 className='text-xs'>{item.source}</h1>
-            <p className='max-w-[280px] text-sm'>{item.title}</p>
-          </div>
-        ))}
-      </div>
-
-=======
       <AnimatePresence mode='wait'>
         <motion.div
           key={activeFilter}
@@ -341,7 +246,6 @@ const Berita: React.FC = () => {
           ))}
         </motion.div>
       </AnimatePresence>
->>>>>>> 9a19a0d9a5d4917d53d8f0f8e184c019d9446109
     </div>
   );
 };
