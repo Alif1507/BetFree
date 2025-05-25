@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
 
     const [message, setMessage] = useState("");
 
-    
+
 
     return (
         <footer id="footer" className="bg-[#a646f2] text-white px-8 py-12 font-sans mt-32">
@@ -29,14 +29,14 @@ const Footer: React.FC = () => {
                         </h2>
                     </div>
                     <div className="flex items-center gap-4">
-                      <input 
-                      type="text" 
+                      <input
+                      type="text"
                       placeholder="Tulis pesan anda disini..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       className="flex-1 px-6 py-3 rounded-full border border-white bg-transparent placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
                       />
-                      <button 
+                      <button
                       onClick={() => setMessage('')}
                       className="flex items-center justify-center gap-2 border border-white px-6 py-3 rounded-full hover:bg-white hover:text-[#a646f2] transition"
                       >
