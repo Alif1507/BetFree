@@ -31,9 +31,9 @@ function Statistik() {
     };
 
     return (
-        <div>
+        <div className="mt-40">
             <h1
-                className={`font-bold text-2xl text-center ${
+                className={`font-semibold text-2xl text-center ${
                     cerai ? "hidden" : ""
                 }`}
             >
@@ -85,7 +85,7 @@ function Statistik() {
             </div>
 
             <h1
-                className={`font-bold text-2xl text-center ${
+                className={`font-semibold text-2xl text-center ${
                     cerai ? "" : "hidden"
                 }`}
             >
@@ -135,17 +135,17 @@ function Statistik() {
             <div className="flex gap-20 justify-center items-center mt-13">
                 <button
                   onClick={umurhadler}
-                  className={` ${cerai ? "cursor-pointer hover:bg-[#492DA8] hover:text-white hover:shadow-[0_0_15px_rgba(73,45,168,0.5)]" : "shadow-[0_0_15px_rgba(73,45,168,0.5)]"}  border-2 p-2 rounded-full border-[#492DA8] text-[#210070] trasnsition duration-150 ease-in-out`}
+                  className={` ${cerai ? "cursor-pointer hover:bg-[#492DA8] hover:text-white hover:shadow-[0_0_15px_rgba(73,45,168,0.5)]" : "shadow-[0_0_15px_rgba(73,45,168,0.5)]"}  border-2 w-[180px] h-[50px] rounded-full border-[#492DA8] text-[#210070] trasnsition duration-150 ease-in-out`}
                 >
                   Data Pengguna
                 </button>
                 <button
                   onClick={ceraihadler}
-                  className={` ${cerai ? "shadow-[0_0_15px_rgba(73,45,168,0.5)]" : "cursor-pointer hover:bg-[#492DA8] hover:text-white hover:shadow-[0_0_15px_rgba(73,45,168,0.5)]"} border-2 p-2 rounded-full border-[#492DA8] text-[#210070] `}
+                  className={` ${cerai ? "shadow-[0_0_15px_rgba(73,45,168,0.5)]" : "cursor-pointer hover:bg-[#492DA8] hover:text-white hover:shadow-[0_0_15px_rgba(73,45,168,0.5)]"} border-2 w-[180px] h-[50px] rounded-full border-[#492DA8] text-[#210070] `}
                 >
                   Data Pencarian
                 </button>
-            
+
             </div>
            <div className="relative">
              <div className={`flex justify-center items-center text-center transition-all duration-200 ease-in-out mt-14 absolute left-[50%] -translate-x-[50%]   ${cerai ? "opacity-0 scale-0" : "opacity-100 scale-100"}`}>
@@ -171,7 +171,7 @@ function Statistik() {
                         src="gambar/Desain tanpa judul (21) 1.png"
                         alt=""
                     />
-                    <p>
+                    <p className="p">
                         Data diatas menunjukan angka perceraian yang meningkat
                         setiap tahunnya, kecanduan judi online menjadi salah
                         satu faktor yang mempengaruhi terlebih pada tahun 2024

@@ -20,6 +20,9 @@ const Hero = () => {
   }, [emblaApi]);
 
   return (
+
+
+
     <div className='w-full mt-[50px] flex items-center justify-center relative'>
       <img src="/gambar/e (17) 2.png" alt="" className='absolute left-0' />
       <img src="/gambar/e (17) 2.png" alt="" className='absolute right-0' />

@@ -134,7 +134,7 @@ const Berita: React.FC = () => {
       source: "CNN Indonesia",
       title: "Update Kasus Judi Online Komdigi: 23 Tersangka, 2 Masih Buron"
     }
-  ]; 
+  ];
 
   const [hari, setHari] = useState(true)
   const [minggu, setMinggu] = useState(false)
@@ -144,7 +144,7 @@ const Berita: React.FC = () => {
     setHari(true)
     setMinggu(false)
     setBulan(false)
-  } 
+  }
 
   const clickMinggu = () => {
     setHari(false)
@@ -160,7 +160,7 @@ const Berita: React.FC = () => {
 
   return (
     <div className='mt-32 flex flex-col items-center justify-center'>
-      <button className='bg-gradient-to-r from-[#2D4FA8] to-[#9747FF] text-white text-xl p-4 rounded-2xl'>
+      <button className='bg-gradient-to-r from-[#2D4FA8] to-[#9747FF] text-white text-xl w-[230px] h-[50px] rounded-2xl'>
         Cek Berita Sekarang
       </button>
 
@@ -211,7 +211,7 @@ const Berita: React.FC = () => {
           </div>
         ))}
       </div>
-     
+
     </div>
   );
 };

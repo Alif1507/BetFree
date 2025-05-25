@@ -1,8 +1,10 @@
 import Berita from '@/Components/Berita';
+import Dampak from '@/Components/Dampak';
 import Fitur from '@/Components/Fitur';
 import Hero from '@/Components/Hero';
 import Navbar from '@/Components/Navbar';
 import PemulihanCard from '@/Components/PemulihanCard';
+import Penyebab from '@/Components/Penyebab';
 import Statistik from '@/Components/Statistik';
 import Visimisi from '@/Components/Visimisi'
 import { PageProps } from '@/types';
@@ -15,10 +17,11 @@ const Welcome = ({
   return (
     <>
        <nav className="flex w-full h-[90px] bg-[#5D0BF34D] shadow-xl justify-between items-center px-10 font-[inter]">
-        <div className="flex w-[100px]">
-            <img src="/gambar/B-removebg-preview 1.png" alt="Logo" className="h-[70px] object-contain" />
+        <div className="flex w-[110px]">
+            <img src="/gambar/B-removebg-preview 1.png" alt="Logo" className="h-[120px] object-contain" />
         </div>
 
+        <div className='flex gap-10 items-center'>
         <div className="flex gap-8 text-lg text-[#2D0353]">
             <a href="#">Beranda</a>
             <a href="#">Tentang</a>
@@ -30,7 +33,7 @@ const Welcome = ({
         {auth.user ? (
         <Link
             href={route('dashboard')}
-            className="rounded-md px-4 py-2 bg-white text-black shadow hover:opacity-80 transition"
+            className="bg-[#6742A9] text-white rounded-xl px-6 py-[9px] text-sm shadow hover:opacity-90 transition"
         >
             Dashboard
         </Link>
@@ -38,24 +41,30 @@ const Welcome = ({
         <>
         <Link
           href={route('login')}
-          className="bg-[#6742A9] text-white rounded-2xl px-6 py-2 text-sm shadow hover:opacity-90 transition"
+          className="bg-[#6742A9] text-white rounded-xl px-6 py-[9px] text-sm shadow hover:opacity-90 transition"
         >
           Login
         </Link>
         <Link
           href={route('register')}
-          className="bg-white text-[#6742A9] border border-[#6742A9] rounded-2xl px-6 py-2 text-sm shadow hover:opacity-90 transition"
+          className="bg-[#6742A9] text-white rounded-xl px-6 py-[9px] text-sm shadow hover:opacity-90 transition"
         >
           Register
         </Link>
       </>
     )}
   </div>
+</div>
+
 </nav>
-           <main className='h-[2000px]'>
+           <main>
                <Hero />
                <Fitur />
                <Visimisi />
+               <Berita />
+               <Statistik />
+               <Dampak />
+               <Penyebab />
            </main>
 
 
