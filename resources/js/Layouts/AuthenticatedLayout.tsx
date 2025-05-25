@@ -15,7 +15,7 @@ export default function Authenticated({
         <div className="min-h-screen bg-white">
             <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly fixed z-10 top-0'>
                 <div>
-                    <img className='opacity-100 w-[130px] h-[130px]' src="gambar/B-removebg-preview 1.png" alt="LOGO BETFREE" />
+                    <img className='opacity-100 w-[130px] h-[130px]' src="/gambar/B-removebg-preview 1.png" alt="LOGO BETFREE" />
                 </div>
                 <div className='flex flex-row gap-10'>
                     <Link href="/">
@@ -80,7 +80,7 @@ export default function Authenticated({
             </nav>
              <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly'>
                 <div>
-                    <img className='opacity-100 w-[130px] h-[130px]' src="gambar/B-removebg-preview 1.png" alt="LOGO BETFREE" />
+                    <img className='opacity-100 w-[130px] h-[130px]' src="/gambar/B-removebg-preview 1.png" alt="LOGO BETFREE" />
                 </div>
                 <div className='flex flex-row gap-10'>
                     <Link href="/">
@@ -108,7 +108,7 @@ export default function Authenticated({
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-[#6742A9] px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                                className="inline-flex items-center rounded-md border border-transparent bg-[#6742A9] px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
                                                 {user.name}
 

@@ -62,7 +62,7 @@ function Create() {
                                 id="tujuan"
                                 type="text"
                                 name="tujuan"
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full py-1"
                                 autoComplete="username"
                                 isFocused={true}
                                 placeholder="Contoh: bebas judi dalam 1 bulan/30 hari"
@@ -93,7 +93,7 @@ function Create() {
                             onChange={(e) => {
                                 setData("hari", e.target.value);
                             }}
-                            className="rounded-md border-[#760686] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-transparent dark:focus:border-indigo-600 dark:focus:ring-indigo-600 mb-8"
+                            className="rounded-md border-[#760686] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-transparent dark:focus:border-indigo-600 dark:focus:ring-indigo-600 mb-8 py-1"
                         />
 
                         {/* catatan harian */}
