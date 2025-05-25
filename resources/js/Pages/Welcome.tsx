@@ -1,6 +1,7 @@
 import Berita from '@/Components/Berita';
 import Fitur from '@/Components/Fitur';
 import Hero from '@/Components/Hero';
+import Opanimation from '@/Components/Opanimation';
 import PemulihanCard from '@/Components/PemulihanCard';
 import Statistik from '@/Components/Statistik';
 import Visimisi from '@/Components/Visimisi'
@@ -13,6 +14,7 @@ const Welcome = ({
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) => {
   return (
     <>
+    <Opanimation />
                             <nav className="-mx-3 flex flex-1 justify-end">
                                 {auth.user ? (
                                     <Link

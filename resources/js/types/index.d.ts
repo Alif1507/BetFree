@@ -12,13 +12,24 @@ export type PaginatedData<T = any> = {
     links:Record<string, string>
 }
 
-export type Pemulihan = {
+export interface Pemulihan {
     id: number;
     tujuan: string;
-    hari: number;
+    hari: string;
     catatan: string;
-    created_at: string;
+}
 
+export interface PaginatedData<T> {
+    pemulihans: {
+        data: T[];
+        meta: {
+            links: {
+                url: string | null;
+                label: string;
+                active: boolean;
+            }[];
+        };
+    };
 }
 
 export interface Forumss {
