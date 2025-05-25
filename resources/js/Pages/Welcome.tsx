@@ -1,12 +1,13 @@
 import Berita from '@/Components/Berita';
 import Fitur from '@/Components/Fitur';
+import Footer from '@/Components/Footer';
 import Hero from '@/Components/Hero';
 import Opanimation from '@/Components/Opanimation';
 import PemulihanCard from '@/Components/PemulihanCard';
 import Statistik from '@/Components/Statistik';
 import Visimisi from '@/Components/Visimisi'
 import { PageProps } from '@/types';
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import React from 'react'
 
 const Welcome = ({
@@ -14,7 +15,9 @@ const Welcome = ({
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) => {
   return (
     <>
-    <Opanimation />
+    <Head title="Home" />
+
+    {/* <Opanimation /> */}
                             <nav className="-mx-3 flex flex-1 justify-end">
                                 {auth.user ? (
                                     <Link
@@ -50,6 +53,7 @@ const Welcome = ({
                                   <div className='mt-[269px]'>
                                     <Statistik />
                                   </div>
+                                  <Footer />
                                 </main>
 
 
