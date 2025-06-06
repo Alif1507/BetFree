@@ -13,7 +13,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/Components/ui/alert-dialog";
-import { useForm, usePage } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
@@ -48,9 +48,10 @@ function Forum({ forums }): PaginatedData<Forumss> {
 
     return (
         <AuthenticatedLayout>
+            <Head title="Forum" />
             <div className="flex flex-col min-h-screen relative gap-10 bg-gradient-to-r from-slate-50 to-purple-300 pb-10">
                 {/* Responsive: Stack on mobile, row on md+ */}
-                <div className="flex flex-col md:flex-row justify-start items-start mt-10 gap-6 w-full px-2 md:px-8">
+                <div className="flex flex-col-reverse md:flex-row justify-start items-start mt-10 gap-6 w-full px-2 md:px-8">
                     {/* Forum List Section - LEFT */}
                     <div className="w-full md:w-2/3 flex flex-col gap-10">
                         <AnimatePresence>
@@ -101,7 +102,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                         </AnimatePresence>
                     </div>
 
-                    {/* Forum Input Section - RIGHT */}
+                    {/* Forum Input Section - RIGHT (on mobile, appears on top) */}
                     <div className="w-full md:w-1/3 flex flex-col gap-3 items-center md:sticky md:top-24">
                         <motion.div
                             initial={{ opacity: 0, y: 40 }}
