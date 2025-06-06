@@ -13,7 +13,7 @@ export default function Authenticated({
 
     return (
         <div className="min-h-screen bg-white">
-            <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly fixed z-10 top-0'>
+            <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly fixed z-50 top-0'>
                 <div>
                     <img className='opacity-100 w-[130px] h-[130px]' src="/gambar/B-removebg-preview 1.png" alt="LOGO BETFREE" />
                 </div>
@@ -34,7 +34,7 @@ export default function Authenticated({
                         Dashboard
                     </Link>
 
-                    <Link href="/dashboard">
+                    <Link href="/qna">
                         QnA
                     </Link>
 
@@ -74,9 +74,9 @@ export default function Authenticated({
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
-                    
+
                 </div>
-                
+
             </nav>
              <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly'>
                 <div>
@@ -139,9 +139,9 @@ export default function Authenticated({
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
-                    
+
                 </div>
-                
+
             </nav>
             {/* <nav className="border-b border-gray-100 bg-[#5D0BF3] opacity-70">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -180,9 +180,9 @@ export default function Authenticated({
                                 </NavLink>
                             </div>
 
-                            
+
                         </div>
-                        
+
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             <div className="relative ms-3">

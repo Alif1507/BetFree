@@ -2,7 +2,7 @@ import { motion } from "motion/react"
 
 const Opanimation = () => {
   return (
-    <motion.div animate={{ opacity:0, pointerEvents:"none" }} transition={{ delay:8, duration:2, ease:"easeInOut" }} className='fixed w-full h-full bg-white z-50 flex items-center justify-center '>
+    <motion.div animate={{ opacity:0, pointerEvents:"none" }} transition={{ delay:8, duration:2, ease:"easeInOut" }} className='fixed w-full h-full bg-white z-50 flex items-center justify-center'>
         <motion.img animate={{ opacity:1 }} initial={{ opacity:0 }} transition={{ duration: 1.5, delay:3, ease:"easeOut" }} src="/gambar/B-removebg-preview 1.png" alt="" />
         <motion.div animate={{ width:10, opacity:0 }} transition={{ duration: 1.5, delay:3, ease:"easeOut" }} className='fixed top-[50%] left-[40%] translate-x-[-50%] translate-y-[-50%] bg-white w-[800px] h-[489px]'>
         </motion.div>

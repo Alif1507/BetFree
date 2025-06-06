@@ -23,7 +23,7 @@ const Hero = () => {
 
 
 
-    <div className='w-full mt-[50px] flex items-center justify-center relative'>
+    <div className='w-full mt-[50px] flex items-center justify-center relative scroll-smooth' id='hero'>
       <img src="/gambar/e (17) 2.png" alt="" className='absolute left-0' />
       <img src="/gambar/e (17) 2.png" alt="" className='absolute right-0' />
 
@@ -54,9 +54,9 @@ const Hero = () => {
         </div>
 
         <Link href='/chatbot'>
-        <button className='flex border-2 border-[#3F00D6] w-[120px] items-center justify-center h-[40px] rounded-xl mt-7 cursor-pointer hover:bg-[#3F00D6]'>
+        <button className='flex border-2 border-[#3F00D6] w-[120px] items-center justify-center h-[40px] rounded-xl mt-7 cursor-pointer hover:bg-[#3F00D6] hover:text-white'>
             <img src="/gambar/bibot-removebg-preview 1.png" alt="" />
-            <p className='text-[#210070] font-medium ml-2'>Bibot</p>
+            <p className='text-[#210070]  font-medium ml-2'>Bibot</p>
         </button>
         </Link>
       </div>

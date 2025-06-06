@@ -15,7 +15,7 @@ function Visimisi() {
   };
 
   return (
-    <div className='flex ml-40 mt-52 mb-32 relative'>
+    <div className='flex ml-40 mt-52 mb-32 relative' id='tentang'>
       <div className={`absolute ${kisah ? "left-0" : "-left-[1000px]"} top-0 transition-all duration-300`}>
       <h1 className='font-bold  text-4xl mb-5'>VISI MISI KAMI</h1>
       <p className='text-2xl max-w-[800px]'>

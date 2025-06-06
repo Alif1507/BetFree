@@ -6,7 +6,7 @@ const Chatbot = () => {
    const [messages, setMessages] = useState<any[]>([]);
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
 
   const sendMessage = async () => {
     if (!prompt.trim()) return;

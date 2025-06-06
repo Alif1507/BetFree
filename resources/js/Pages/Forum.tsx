@@ -33,7 +33,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
 
     let erros = usePage().props.errors
 
-    
+
 
     const createForum: FormEventHandler = (ev) => {
         ev.preventDefault();
@@ -92,7 +92,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                             Pertanyaan / Bagikan
                                         </h1>
                                         <h1></h1>
-                                        <AlertDialogDescription className="bg-purple-400 p-3 rounded-2xl text-sm font-light mb-3">
+                                        <AlertDialogDescription className="bg-purple-400 p-3 text-[#210070]  rounded-2xl text-sm mb-3">
                                             Berikan pertanyaan yang anda ingin
                                             tanyakan pada teman-teman BeatFree
                                             atau bagikan cerita pengalaman saran
@@ -129,7 +129,6 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                 <Input
                                                     type="text"
                                                     id="judul"
-                                                    placeholder="judul"
                                                     name="judul"
                                                     value={data.judul}
                                                     onChange={(e) =>
@@ -150,7 +149,6 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                 <Input
                                                     type="text"
                                                     id="deskripsi"
-                                                    placeholder="deskripsi"
                                                     name="deskripsi"
                                                     value={data.deskripsi}
                                                     onChange={(e) =>
@@ -179,7 +177,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                 className="h-40 max-w-110 mb-3"
                                             />
                                             <PrimaryButton
-                                                className="mr-4"
+                                                className="mr-4 cursor-pointer"
                                                 onClick={() =>
                                                     toast(
                                                         `${Object.keys(erros).length >= 3 ? "Forum ada yang blm di isi!" : "Forum Telah Dibuat!" }`,
@@ -196,7 +194,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                             >
                                                 Kirim
                                             </PrimaryButton>
-                                            <AlertDialogCancel>
+                                            <AlertDialogCancel className="cursor-pointer">
                                                 Close
                                             </AlertDialogCancel>
                                         </form>
@@ -204,7 +202,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                     <AlertDialogFooter></AlertDialogFooter>
                                 </motion.div>
                             </AlertDialogContent>
-                            <Toaster 
+                            <Toaster
                                 style={{ zIndex: 9999 }}
                                 toastOptions={{
                                     classNames: {

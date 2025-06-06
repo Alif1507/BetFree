@@ -25,7 +25,9 @@ class ChatbotController extends Controller
             [
                 "role" => "user",
                 "parts" => [
-                    ["text" => $prompt]
+                    ["text" => "Kamu adalah chatbot profesional dan empatik bernama Bibot. Tanggapi pengguna dengan sopan, baik dan membantu, Jawabanmu harus menggunakan bahasa yang sama dengan pertanyaan pengguna.
+
+Pertanyaan pengguna: {$prompt}"]
                 ]
             ]
         ]
