@@ -13,14 +13,13 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/Components/ui/alert-dialog";
-import { useForm, usePage } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
-import TextInput from "@/Components/TextInput";
 import InputLabel from "@/Components/InputLabel";
 import { Input } from "@/Components/ui/input";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Forumss, PaginatedData } from "@/types";
 import InputError from "@/Components/InputError";
 
@@ -37,69 +36,133 @@ function Forum({ forums }): PaginatedData<Forumss> {
 
     const createForum: FormEventHandler = (ev) => {
         ev.preventDefault();
-
         post(route("forum.store"), {
             preserveScroll: true,
         });
     };
 
-    const [isExpanded, setIsExpanded] = useState(false);
+    // Track expanded forum by id for independent expand/collapse
+    const [expandedId, setExpandedId] = useState<number | null>(null);
 
-    const toggleReadMore = () => {
-        setIsExpanded(!isExpanded);
+    const toggleReadMore = (id: number) => {
+        setExpandedId(expandedId === id ? null : id);
     };
 
     return (
         <AuthenticatedLayout>
-            <div className="flex flex-col min-h-screen relative gap-16 bg-gradient-to-r from-slate-50 to-purple-300">
-                <div className="flex justify-evenly items-center mt-10">
-                    <div className="w-[630px] p-4 rounded-2xl bg-white">
-                        <Textarea
-                            placeholder="Berikan Pengalaman Anda"
-                            value={data.body}
-                            onChange={(e) => setData("body", e.target.value)}
-                        />
-                    </div>
-                    <div className="flex gap-3 items-center">
-                        <AlertDialog>
-                            <AlertDialogTrigger>
-                                {" "}
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="size-16 cursor-pointer hover:text-white duration-300"
+            <Head title="Forum" />
+            <div className="flex flex-col min-h-screen relative gap-10 bg-gradient-to-r from-slate-50 to-purple-300 pb-10">
+                {/* Responsive: Stack on mobile, row on md+ */}
+                <div className="flex flex-col-reverse md:flex-row justify-start items-start mt-10 gap-6 w-full px-2 md:px-8">
+                    {/* Forum List Section - LEFT */}
+                    <div className="w-full md:w-2/3 flex flex-col gap-10">
+                        <AnimatePresence>
+                            {forums.data.map((forum) => (
+                                <motion.div
+                                    key={forum.id}
+                                    initial={{ opacity: 0, y: 40 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 40 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="w-full max-w-[95vw] sm:max-w-lg md:max-w-2xl min-h-[221px] p-5 sm:p-7 border-black border rounded-2xl flex flex-col gap-4 text-start bg-white shadow-2xl mx-auto md:mx-0"
                                 >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                    />
-                                </svg>
+                                    <div className="gap-1 flex flex-col">
+                                        <h1 className="font-bold font-inter text-black text-lg sm:text-xl">
+                                            {forum.user.name}
+                                        </h1>
+                                        <h2 className="font-inter text-black text-base sm:text-xl font-light">
+                                            {forum.judul}
+                                        </h2>
+                                    </div>
+                                    <hr />
+                                    <div className="gap-3 flex flex-col">
+                                        <h1 className="text-black text-lg sm:text-2xl font-inter font-bold">
+                                            {forum.deskripsi}
+                                        </h1>
+                                        {(forum.body || "").length > 200 ? (
+                                            <>
+                                                <p className="break-words whitespace-pre-line">
+                                                    {expandedId === forum.id
+                                                        ? forum.body
+                                                        : `${(forum.body || "").slice(0, 200)}.....`}
+                                                </p>
+                                                <button
+                                                    onClick={() => toggleReadMore(forum.id)}
+                                                    className="text-amber-500 hover:underline"
+                                                >
+                                                    {expandedId === forum.id
+                                                        ? "ReadLess"
+                                                        : "ReadMore"}
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <p className="break-words whitespace-pre-line">{forum.body}</p>
+                                        )}
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Forum Input Section - RIGHT (on mobile, appears on top) */}
+                    <div className="w-full md:w-1/3 flex flex-col gap-3 items-center md:sticky md:top-24">
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="w-full p-4 rounded-2xl bg-white shadow-lg mb-4"
+                        >
+                            <Textarea
+                                placeholder="Berikan Pengalaman Anda"
+                                value={data.body}
+                                onChange={(e) => setData("body", e.target.value)}
+                                className="w-full min-h-[100px] md:min-h-[120px] resize-y break-words whitespace-pre-line"
+                            />
+                        </motion.div>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="bg-purple-600 text-white rounded-full p-4 shadow-lg hover:bg-purple-700 transition"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="size-8"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                        />
+                                    </svg>
+                                </motion.button>
                             </AlertDialogTrigger>
                             <AlertDialogContent asChild>
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
-                                    transition={{ duration: 0.1 }}
-                                    className="bg-white  h-auto rounded-xl shadow-xl"
+                                    transition={{ duration: 0.15 }}
+                                    className="bg-white h-auto rounded-xl shadow-xl w-full max-w-md mx-auto"
                                 >
                                     <AlertDialogHeader className="relative py-6">
                                         <h1 className="absolute top-0 left-0 text-xs">
                                             Pertanyaan / Bagikan
                                         </h1>
                                         <h1></h1>
-                                        <AlertDialogDescription className="bg-purple-400 p-3 text-[#210070]  rounded-2xl text-sm mb-3">
+                                        <AlertDialogDescription className="bg-purple-400 p-3 rounded-2xl text-sm font-light mb-3">
                                             Berikan pertanyaan yang anda ingin
                                             tanyakan pada teman-teman BeatFree
                                             atau bagikan cerita pengalaman saran
                                             atau tips kepada teman-teman
                                             BeatFree, salin membantu sesama
                                         </AlertDialogDescription>
-                                        <div className="flex gap-3">
+                                        <div className="flex gap-3 items-center">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -113,22 +176,17 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                     clipRule="evenodd"
                                                 />
                                             </svg>
-                                            <h1>Publik</h1>
+                                            <h1 className="font-semibold">Publik</h1>
                                         </div>
-
-                                        <form onSubmit={createForum}>
-                                            <div className="my-3 gap-3">
+                                        <form onSubmit={createForum} className="space-y-4">
+                                            <div>
                                                 <InputLabel htmlFor="judul">
                                                     Judul
                                                 </InputLabel>
-                                                <InputError
-                                                    message={errors.judul}
-                                                    className="mt-2"
-                                                />
-
                                                 <Input
                                                     type="text"
                                                     id="judul"
+                                                    placeholder="judul"
                                                     name="judul"
                                                     value={data.judul}
                                                     onChange={(e) =>
@@ -137,18 +195,21 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                             e.target.value
                                                         )
                                                     }
+                                                    className="w-full"
                                                 />
-
+                                                <InputError
+                                                    message={errors.judul}
+                                                    className="mt-2"
+                                                />
+                                            </div>
+                                            <div>
                                                 <InputLabel htmlFor="deskripsi">
                                                     Deskripsi
                                                 </InputLabel>
-                                                <InputError
-                                                    message={errors.deskripsi}
-                                                    className="mt-2"
-                                                />
                                                 <Input
                                                     type="text"
                                                     id="deskripsi"
+                                                    placeholder="deskripsi"
                                                     name="deskripsi"
                                                     value={data.deskripsi}
                                                     onChange={(e) =>
@@ -157,10 +218,10 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                             e.target.value
                                                         )
                                                     }
+                                                    className="w-full"
                                                 />
-                                            </div>
-                                            <InputError
-                                                    message={errors.body}
+                                                <InputError
+                                                    message={errors.deskripsi}
                                                     className="mt-2"
                                                 />
                                             <Textarea
@@ -177,7 +238,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                 className="h-40 max-w-110 mb-3"
                                             />
                                             <PrimaryButton
-                                                className="mr-4 cursor-pointer"
+                                                className="mr-4"
                                                 onClick={() =>
                                                     toast(
                                                         `${Object.keys(erros).length >= 3 ? "Forum ada yang blm di isi!" : "Forum Telah Dibuat!" }`,
@@ -194,12 +255,12 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                             >
                                                 Kirim
                                             </PrimaryButton>
-                                            <AlertDialogCancel className="cursor-pointer">
+                                            <AlertDialogCancel>
                                                 Close
                                             </AlertDialogCancel>
                                         </form>
                                     </AlertDialogHeader>
-                                    <AlertDialogFooter></AlertDialogFooter>
+                                    <AlertDialogFooter />
                                 </motion.div>
                             </AlertDialogContent>
                             <Toaster
@@ -212,60 +273,20 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                     },
                                 }}
                             />
-                            <AlertDialogTrigger>
-                                <Button className="bg-white text-black cursor-pointer hover:bg-purple-600 hover:text-white duration-300">Tanyakan</Button>
-                            </AlertDialogTrigger>
-
-                            <AlertDialogTrigger>
-                                <Button className="bg-white text-black cursor-pointer hover:bg-purple-600 hover:text-white duration-300">Bagikan</Button>
-                            </AlertDialogTrigger>
+                            <div className="flex gap-2 mt-2">
+                                <AlertDialogTrigger asChild>
+                                    <Button className="bg-white text-black cursor-pointer hover:bg-purple-600 hover:text-white duration-300">
+                                        Tanyakan
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogTrigger asChild>
+                                    <Button className="bg-white text-black cursor-pointer hover:bg-purple-600 hover:text-white duration-300">
+                                        Bagikan
+                                    </Button>
+                                </AlertDialogTrigger>
+                            </div>
                         </AlertDialog>
                     </div>
-                </div>
-                <div className="ml-30 flex flex-col gap-20 mr-30">
-                    {forums.data.map((forum) => (
-                        <div
-                            key={forum.id}
-                            className="max-w-[630px] min-h-[221px] p-7 border-black border-2 rounded-2xl flex flex-col gap-4 text-start  bg-white shadow-2xl"
-                        >
-                            <div className="gap-1 flex flex-col">
-                                <h1 className="font-bold font-inter text-black text-xl">
-                                    {forum.user.name}
-                                </h1>
-                                <h2 className="font-inter text-black text-xl font-light">
-                                    {forum.judul}
-                                </h2>
-                            </div>
-
-                            <hr />
-
-                            <div className="gap-3 flex flex-col">
-                                <h1 className="text-black text-2xl font-inter font-bold">
-                                    {forum.deskripsi}
-                                </h1>
-                                {(forum.body).length > 200 && (
-                                    <>
-                                        <p className="text-wrap">
-                                            {isExpanded
-                                                ? forum.body
-                                                : `${(forum.body).slice(
-                                                      0,
-                                                      200
-                                                  )}.....`}
-                                        </p>
-                                        <button
-                                            onClick={toggleReadMore}
-                                            className="text-amber-500 hover:underline"
-                                        >
-                                            {isExpanded
-                                                ? "ReadLess"
-                                                : "ReadMore"}
-                                        </button>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    ))}
                 </div>
             </div>
         </AuthenticatedLayout>

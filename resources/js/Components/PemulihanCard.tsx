@@ -24,7 +24,7 @@ const PemulihanCard: React.FC<Props> = ({ id, tujuan, hari, catatan }) => {
     const [expired, setExpired] = useState(false);
 
     return (
-        <div className="relative flex w-80 flex-col rounded-xl bg-[#512DA8] bg-clip-border text-gray-700 shadow-slate-500 shadow-2xl">
+        <div className="relative flex max-w-90 flex-col rounded-xl bg-[#512DA8] bg-clip-border text-gray-700 shadow-slate-500 shadow-2xl">
             <div className="p-6">
                 <h5 className="mb-2 block font-sans text-xl text-white font-semibold leading-snug tracking-normal">
                     {tujuan}

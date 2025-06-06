@@ -1,11 +1,12 @@
 import PemulihanCard from "@/Components/PemulihanCard";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PaginatedData, Pemulihan } from "@/types";
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 function Index({ pemulihans }: PaginatedData<Pemulihan>) {
     return (
         <AuthenticatedLayout>
+            <Head title="Pemulihan" />
             {/* Create Button Section */}
             <div className="container mx-auto px-4 py-8">
                 <Link href={route("pemulihan.create")}>

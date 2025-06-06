@@ -4,7 +4,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextAreaInput from "@/Components/TextAreaInput";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler, useRef, useState } from "react";
 
 function Create() {
@@ -24,6 +24,9 @@ function Create() {
 
     return (
         <AuthenticatedLayout>
+            <Head title="Pemulihan" />
+
+
             <div className="flex justify-center items-center mt-32">
                 <div className="mt-6 w-full overflow-hidden bg-transparent border-[#760686] border-2 px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg flex flex-col ">
                     <div className="flex items-center justify-center gap-3">

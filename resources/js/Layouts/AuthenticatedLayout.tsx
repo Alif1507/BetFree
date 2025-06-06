@@ -8,12 +8,11 @@ export default function Authenticated({
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
 
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
         <div className="min-h-screen bg-white">
-            <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly fixed z-50 top-0'>
+            <nav className='bg-[#AE85F9] flex flex-row h-[99px] w-screen items-center justify-evenly fixed z-10 top-0'>
                 <div>
                     <img className='opacity-100 w-[130px] h-[130px]' src="/gambar/B-removebg-preview 1.png" alt="LOGO BETFREE" />
                 </div>
@@ -34,7 +33,7 @@ export default function Authenticated({
                         Dashboard
                     </Link>
 
-                    <Link href="/qna">
+                    <Link href="/dashboard">
                         QnA
                     </Link>
 
@@ -271,47 +270,10 @@ export default function Authenticated({
                         </div>
                     </div>
                 </div>
+            </nav>
 
-                <div
-                    className={
-                        (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
-                    }
-                >
-                    <div className="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
-                    </div>
-
-                    <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
-                        <div className="px-4">
-                            <div className="text-base font-medium text-gray-800 dark:text-gray-200">
-                                {user.name}
-                            </div>
-                            <div className="text-sm font-medium text-gray-500">
-                                {user.email}
-                            </div>
-                        </div>
-
-                        <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="post"
-                                href={route('logout')}
-                                as="button"
-                            >
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
-                    </div>
-                </div>
-            </nav> */}
+            {/* Spacer for fixed navbar */}
+            <div className="h-[70px] md:h-[70px]" />
 
             {header && (
                 <header className="bg-white shadow dark:bg-gray-800">
@@ -321,7 +283,7 @@ export default function Authenticated({
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className="pt-2">{children}</main>
         </div>
     );
 }
