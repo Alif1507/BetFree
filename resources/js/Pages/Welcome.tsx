@@ -10,7 +10,6 @@ import Visimisi from "@/Components/Visimisi";
 import { PageProps } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
->>>>>>> 8136f483861e2d90f9b54e2233d7f0558b10863d
 
 const Welcome = ({
     auth,
@@ -20,51 +19,7 @@ const Welcome = ({
             <Head title="Home" />
 
             <Opanimation />
-            <nav className="flex w-full h-[90px] bg-[#5D0BF34D] shadow-xl justify-between items-center px-10 font-[inter]">
-                <div className="flex w-[110px]">
-                    <img
-                        src="/gambar/B-removebg-preview 1.png"
-                        alt="Logo"
-                        className="h-[120px] object-contain"
-                    />
-                </div>
-
-                <div className="flex gap-10 items-center">
-                    <div className="flex gap-8 text-lg text-[#2D0353]">
-                        <a href="#">Beranda</a>
-                        <a href="#">Tentang</a>
-                        <a href="#">Edukasi</a>
-                        <a href="#">Berita</a>
-                    </div>
->>>>>>> 8136f483861e2d90f9b54e2233d7f0558b10863d
-
-                    <div className="flex items-center gap-4">
-                        {auth.user ? (
-                            <Link
-                                href={route("dashboard")}
-                                className="bg-[#6742A9] text-white rounded-xl px-6 py-[9px] text-sm shadow hover:opacity-90 transition"
-                            >
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link
-                                    href={route("login")}
-                                    className="bg-[#6742A9] text-white rounded-xl px-6 py-[9px] text-sm shadow hover:opacity-90 transition"
-                                >
-                                    Login
-                                </Link>
-                                <Link
-                                    href={route("register")}
-                                    className="bg-[#6742A9] text-white rounded-xl px-6 py-[9px] text-sm shadow hover:opacity-90 transition"
-                                >
-                                    Register
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </nav>
+            <div className="h-[99px]">.</div>
 
              <nav className="flex w-full h-[90px] bg-[#5D0BF34D] shadow-xl justify-between items-center px-10 font-[inter] fixed top-0 z-40">
                 <div className="flex w-[110px]">

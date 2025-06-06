@@ -30,9 +30,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
         body: "",
     });
 
-    let erros = usePage().props.errors
-
-
+    let erros = usePage().props.errors;
 
     const createForum: FormEventHandler = (ev) => {
         ev.preventDefault();
@@ -154,7 +152,6 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                         <h1 className="absolute top-0 left-0 text-xs">
                                             Pertanyaan / Bagikan
                                         </h1>
-                                        <h1></h1>
                                         <AlertDialogDescription className="bg-purple-400 p-3 rounded-2xl text-sm font-light mb-3">
                                             Berikan pertanyaan yang anda ingin
                                             tanyakan pada teman-teman BeatFree
@@ -186,7 +183,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                 <Input
                                                     type="text"
                                                     id="judul"
-                                                    placeholder="judul"
+                                                    placeholder="Judul"
                                                     name="judul"
                                                     value={data.judul}
                                                     onChange={(e) =>
@@ -209,7 +206,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                 <Input
                                                     type="text"
                                                     id="deskripsi"
-                                                    placeholder="deskripsi"
+                                                    placeholder="Deskripsi"
                                                     name="deskripsi"
                                                     value={data.deskripsi}
                                                     onChange={(e) =>
@@ -224,40 +221,58 @@ function Forum({ forums }): PaginatedData<Forumss> {
                                                     message={errors.deskripsi}
                                                     className="mt-2"
                                                 />
-                                            <Textarea
-                                                id="body"
-                                                value={data.body}
-                                                name="body"
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "body",
-                                                        e.target.value
-                                                    )
-                                                } // 🔄 sync here
-                                                placeholder="Tuliskan pertanyaan atau bagikan pengalaman/saran......."
-                                                className="h-40 max-w-110 mb-3"
-                                            />
-                                            <PrimaryButton
-                                                className="mr-4"
-                                                onClick={() =>
-                                                    toast(
-                                                        `${Object.keys(erros).length >= 3 ? "Forum ada yang blm di isi!" : "Forum Telah Dibuat!" }`,
-                                                        {
-                                                            description:
-                                                                `${Object.keys(erros).length >= 3 ? "Silakan Ulang" : "Silakan Tutup" }`,
-                                                            duration: 3000,
-                                                            className:
-                                                                "bg-purple-600 text-white font-semibold rounded-lg shadow-lg",
-                                                        }
-                                                    )
-                                                }
-                                                disabled={processing}
-                                            >
-                                                Kirim
-                                            </PrimaryButton>
-                                            <AlertDialogCancel>
-                                                Close
-                                            </AlertDialogCancel>
+                                            </div>
+                                            <div>
+                                                <InputLabel htmlFor="body">
+                                                    Konten
+                                                </InputLabel>
+                                                <Textarea
+                                                    id="body"
+                                                    value={data.body}
+                                                    name="body"
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "body",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    placeholder="Tuliskan pertanyaan atau bagikan pengalaman/saran......."
+                                                    className="h-32 w-full break-words whitespace-pre-line"
+                                                />
+                                                <InputError
+                                                    message={errors.body}
+                                                    className="mt-2"
+                                                />
+                                            </div>
+                                            <div className="flex gap-3 mt-4">
+                                                <PrimaryButton
+                                                    className="mr-4"
+                                                    onClick={() =>
+                                                        toast(
+                                                            `${Object.keys(erros).length >= 3
+                                                                ? "Forum ada yang blm di isi!"
+                                                                : "Forum Telah Dibuat!"
+                                                            }`,
+                                                            {
+                                                                description:
+                                                                    `${Object.keys(erros).length >= 3
+                                                                        ? "Silakan Ulang"
+                                                                        : "Silakan Tutup"
+                                                                    }`,
+                                                                duration: 3000,
+                                                                className:
+                                                                    "bg-purple-600 text-white font-semibold rounded-lg shadow-lg",
+                                                            }
+                                                        )
+                                                    }
+                                                    disabled={processing}
+                                                >
+                                                    Kirim
+                                                </PrimaryButton>
+                                                <AlertDialogCancel>
+                                                    Close
+                                                </AlertDialogCancel>
+                                            </div>
                                         </form>
                                     </AlertDialogHeader>
                                     <AlertDialogFooter />
