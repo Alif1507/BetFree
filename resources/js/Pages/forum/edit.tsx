@@ -1,13 +1,13 @@
-import React from "react";
+import React, { FormEventHandler } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import InputLabel from "@/Components/InputLabel";
 import InputError from "@/Components/InputError";
 import { Input, Textarea } from "@headlessui/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { Head, useForm } from "@inertiajs/react";
-import { Forumss, PaginatedData } from "@/types";
+import Edit from "../Profile/Edit";
 
-function create({ dataa }): PaginatedData<Forumss> {
+function edit({ dataa }): JSX.Element {
     let forum = dataa.data;
 
     const { data, setData, errors, put, processing } = useForm({
@@ -16,12 +16,21 @@ function create({ dataa }): PaginatedData<Forumss> {
         body: forum.body,
     });
 
+
+    const updateForum: FormEventHandler = (ev) => {
+        ev.preventDefault();
+        put(route("forum.update", forum.id), {
+            preserveScroll: true,
+            // No need to pass data here, useForm handles it
+        });
+    }
+
     return (
         <AuthenticatedLayout>
             <Head title="Edit Forum" />
 
             <div className="container mx-auto py-8">
-                <form className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+                <form onSubmit={updateForum} className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
                     <div className="space-y-6">
                         {/* Judul Field */}
                         <div className="form-group">
@@ -96,11 +105,10 @@ function create({ dataa }): PaginatedData<Forumss> {
                         {/* Submit Button */}
                         <div className="flex justify-end">
                             <PrimaryButton
-                                type="submit"
                                 disabled={processing}
                                 className="px-6"
                             >
-                                Kirim
+                                Edit
                             </PrimaryButton>
                         </div>
                     </div>
@@ -110,4 +118,4 @@ function create({ dataa }): PaginatedData<Forumss> {
     );
 }
 
-export default create;
+export default edit;

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\forumResource;
 use App\Models\Forum;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -69,26 +68,47 @@ class ForumController extends Controller
     {
         $data = Forum::findOrfail($id);
 
-        return Inertia::render("forum/create", [
+        return Inertia::render("forum/edit", [
             "dataa" => new forumResource($data)
         ]);
-
-        // Gate::authorize("update", $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Forum $forum)
+    public function update(Request $request, $id)
     {
-        //
+
+        $forum = Forum::findOrFail($id);
+
+        $data = $request->validate(
+            [
+                "judul" => "required|string",
+                "deskripsi" => "required|string",
+                "body" => "required|string"
+            ],
+            [
+                'judul.required' => 'Judul wajib diisi.',
+                'deskripsi.required' => 'Deskripsi tidak boleh kosong.',
+                'body.required' => 'Isi pertanyaan atau cerita tidak boleh kosong.',
+            ]
+        );
+
+        $forum->update($data);
+
+        return to_route('dashboard')->with("message", "Forum Berhasil diupdate");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Forum $forum)
+    public function destroy($id)
     {
-        //
+        $forum = Forum::findOrFail($id);
+
+
+        $forum->delete();
+
+        return to_route('dashboard')->with("message", "Forum Berhasil dihapus");
     }
 }

@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post("/forum", [ForumController::class, "store"])->name("forum.store");
     Route::put("/forum/{id}", [ForumController::class, "update"])->name("forum.update");
     Route::get("/forum/{id}/edit", [ForumController::class, "edit"])->name("forum.edit");
+    Route::delete("/forum/{id}", [ForumController::class, "destroy"])->name("forum.destroy");
 });
 
 require __DIR__.'/auth.php';

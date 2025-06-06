@@ -99,7 +99,7 @@ export default function Authenticated({
                         Dashboard
                     </Link>
 
-                    <Link href="/dashboard">
+                    <Link href="/qna">
                         QnA
                     </Link>
 
