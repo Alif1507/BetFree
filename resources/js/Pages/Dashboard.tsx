@@ -3,7 +3,7 @@ import { Forumss, PaginatedData } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Dashboard({ forums }): PaginatedData<Forumss> {
+export default function Dashboard({ forums }: { forums: PaginatedData<Forumss> }): JSX.Element {
     const [expandedId, setExpandedId] = useState<number | null>(null);
 
     const toggleReadMore = (id: number) => {
@@ -20,11 +20,14 @@ export default function Dashboard({ forums }): PaginatedData<Forumss> {
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
+            <div className="py-12 min-h-screen bg-gradient-to-r from-slate-50 to-purple-300">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {forums.data.map((forum) => (
-                        <div key={forum.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 mb-10 relative">
-                            <div className="p-6 text-gray-900 dark:text-gray-100">
+                        <div
+                            key={forum.id}
+                            className="relative overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 mb-10 p-6"
+                        >
+                            <div className="text-gray-900 dark:text-gray-100">
                                 <h1 className="font-inter font-light">
                                     {forum.judul}
                                 </h1>
@@ -34,7 +37,7 @@ export default function Dashboard({ forums }): PaginatedData<Forumss> {
                                 <div className="font-inter max-w-[1000px]">
                                     {(forum.body || "").length > 200 ? (
                                         <>
-                                            <p>
+                                            <p className="break-words whitespace-pre-line">
                                                 {expandedId === forum.id
                                                     ? forum.body
                                                     : `${(forum.body || "").slice(0, 200)}.....`}
@@ -42,18 +45,22 @@ export default function Dashboard({ forums }): PaginatedData<Forumss> {
                                             <button
                                                 onClick={() => toggleReadMore(forum.id)}
                                                 className="text-amber-500 hover:underline"
+                                                aria-label={expandedId === forum.id ? "Read less" : "Read more"}
                                             >
                                                 {expandedId === forum.id ? "ReadLess" : "ReadMore"}
                                             </button>
                                         </>
                                     ) : (
-                                        <p>{forum.body}</p>
+                                        <p className="break-words whitespace-pre-line">{forum.body}</p>
                                     )}
                                 </div>
                             </div>
                             <Link href={route("forum.edit", forum.id)}>
-                                <section className="flex justify-center items-center absolute bottom-5 right-[110px] z-50">
-                                    <button className="group flex justify-center p-2 rounded-md drop-shadow-xl bg-blue-600 from-gray-800 text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]">
+                                <div className="flex justify-center items-center absolute bottom-5 right-[110px] z-50">
+                                    <button
+                                        className="group flex justify-center p-2 rounded-md drop-shadow-xl bg-blue-600 from-gray-800 text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]"
+                                        aria-label="Edit"
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
@@ -72,11 +79,14 @@ export default function Dashboard({ forums }): PaginatedData<Forumss> {
                                             Edit
                                         </span>
                                     </button>
-                                </section>
+                                </div>
                             </Link>
                             <Link href={route("forum.destroy", forum.id)} method="delete" as="button">
-                                <section className="flex justify-center items-center absolute bottom-5 right-[50px] z-50">
-                                    <button className="group flex justify-center p-2 rounded-md drop-shadow-xl bg-red-600 from-gray-800 text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]">
+                                <div className="flex justify-center items-center absolute bottom-5 right-[50px] z-50">
+                                    <button
+                                        className="group flex justify-center p-2 rounded-md drop-shadow-xl bg-red-600 from-gray-800 text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]"
+                                        aria-label="Delete"
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
@@ -95,7 +105,7 @@ export default function Dashboard({ forums }): PaginatedData<Forumss> {
                                             Delete
                                         </span>
                                     </button>
-                                </section>
+                                </div>
                             </Link>
                         </div>
                     ))}

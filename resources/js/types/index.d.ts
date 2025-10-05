@@ -8,6 +8,7 @@ export interface User {
 }
 
 export type PaginatedData<T = any> = {
+    meta: any;
     data:T[];
     links:Record<string, string>
 }

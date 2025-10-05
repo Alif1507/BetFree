@@ -7,7 +7,20 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import { Head, useForm } from "@inertiajs/react";
 import Edit from "../Profile/Edit";
 
-function edit({ dataa }): JSX.Element {
+type Forum = {
+    id: number;
+    judul: string;
+    deskripsi: string;
+    body: string;
+};
+
+type EditProps = {
+    dataa: {
+        data: Forum;
+    };
+};
+
+function edit({ dataa }: EditProps): JSX.Element {
     let forum = dataa.data;
 
     const { data, setData, errors, put, processing } = useForm({

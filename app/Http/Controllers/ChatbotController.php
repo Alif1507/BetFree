@@ -14,42 +14,53 @@ class ChatbotController extends Controller
         return Inertia::render("Chatbot");
     }
 
-    public function store(Request $request): JsonResponse
+   public function store(Request $request): JsonResponse
 {
-    $prompt = $request->input('prompt');
-    $apiKey = env('GEMINI_API_KEY');
-    $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}";
+    try {
+        $prompt = $request->input('prompt');
+        $apiKey = env('GEMINI_API_KEY');
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$apiKey}";
 
-    $body = [
-        "contents" => [
-            [
-                "role" => "user",
-                "parts" => [
-                    ["text" => "Kamu adalah chatbot profesional dan empatik bernama Bibot. Tanggapi pengguna dengan sopan, baik dan membantu, Jawabanmu harus menggunakan bahasa yang sama dengan pertanyaan pengguna.
-
-Pertanyaan pengguna: {$prompt}"]
+        $body = [
+            "contents" => [
+                [
+                    "role" => "user",
+                    "parts" => [
+                        ["text" => $prompt]
+                    ]
                 ]
             ]
-        ]
-    ];
+        ];
 
-    $response = Http::post($url, $body);
+        $response = Http::post($url, $body);
 
-    if ($response->failed()) {
-        Log::error('Gemini API Error', [
+        // Log the full response for debugging
+        Log::info('Gemini API response', [
             'status' => $response->status(),
-            'body' => $response->body(),
+            'body' => $response->body()
         ]);
+
+        if ($response->failed()) {
+            return response()->json([
+                'reply' => 'Gemini API gagal. Status: ' . $response->status(),
+                'error' => json_decode($response->body(), true)
+            ], 500);
+        }
+
+        // Safely get reply text
+        $text = data_get($response->json(), 'candidates.0.content.parts.0.text', 'Gemini tidak mengembalikan jawaban.');
 
         return response()->json([
-            'reply' => 'Maaf, Bibot sedang tidak dapat merespon.'
+            'reply' => $text
         ]);
+    } catch (\Throwable $e) {
+        Log::error('Gemini error', ['msg' => $e->getMessage()]);
+        return response()->json([
+            'reply' => 'Server error: ' . $e->getMessage()
+        ], 500);
     }
-
-    $reply = $response->json('candidates.0.content.parts.0.text') ?? 'Bibot tidak bisa menjawab saat ini.';
-
-    return response()->json([
-        'reply' => $reply
-    ]);
 }
+
+
+
 }

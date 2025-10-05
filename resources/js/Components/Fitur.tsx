@@ -23,7 +23,7 @@ const Fitur = () => {
                 <h1 className='mt-5 text-lg'>Forum</h1>
             </div>
             <div className='bg-[#ffff] rounded-full w-1 h-44'>.</div>
-            <div className='relative z-50'>
+            <div className='relative z-40'>
                 <Link href='/pemulihan'>
                     <img src="/gambar/e (31) 1.png" alt="" className='hover:scale-110 transition cursor-pointer'/>
                 </Link>

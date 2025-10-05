@@ -3,14 +3,27 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { PaginatedData, Pemulihan } from "@/types";
 import { Head, Link } from "@inertiajs/react";
 
-function Index({ pemulihans }: PaginatedData<Pemulihan>) {
+type PemulihanIndexProps = {
+    pemulihans: PaginatedData<Pemulihan>;
+};
+
+interface PaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+}
+
+function Index({ pemulihans }: PemulihanIndexProps) {
     return (
         <AuthenticatedLayout>
             <Head title="Pemulihan" />
             {/* Create Button Section */}
             <div className="container mx-auto px-4 py-8">
                 <Link href={route("pemulihan.create")}>
-                    <button className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group">
+                    <button
+                        type="button"
+                        className="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-indigo-500 rounded-md group"
+                    >
                         <span className="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-indigo-700 rounded group-hover:-mr-4 group-hover:-mt-4">
                             <span className="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white" />
                         </span>
@@ -38,17 +51,17 @@ function Index({ pemulihans }: PaginatedData<Pemulihan>) {
                     </button>
                 </Link>
             </div>
-            
+
             {/* Cards Grid Section */}
             <div className="container mx-auto px-4 flex flex-col items-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                     {pemulihans.data.map((pemulihan) => (
-                        <PemulihanCard 
+                        <PemulihanCard
                             key={pemulihan.id}
-                            tujuan={pemulihan.tujuan} 
-                            hari={pemulihan.hari} 
-                            catatan={pemulihan.catatan} 
-                            id={pemulihan.id} 
+                            tujuan={pemulihan.tujuan}
+                            hari={pemulihan.hari}
+                            catatan={pemulihan.catatan}
+                            id={pemulihan.id}
                         />
                     ))}
                 </div>
@@ -57,15 +70,15 @@ function Index({ pemulihans }: PaginatedData<Pemulihan>) {
             {/* Pagination Section */}
             <div className="container mx-auto px-4 py-8 flex justify-center">
                 <nav className="flex items-center space-x-2">
-                    {pemulihans.meta.links.map((link) =>
+                    {pemulihans.meta.links.map((link: PaginationLink) =>
                         link.url ? (
                             <Link
                                 key={link.label}
                                 href={link.url}
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                                 className={`px-3 py-2 rounded-md ${
-                                    link.active 
-                                        ? "bg-indigo-500 text-white" 
+                                    link.active
+                                        ? "bg-indigo-500 text-white"
                                         : "text-gray-600 hover:bg-gray-100"
                                 }`}
                             />

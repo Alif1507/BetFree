@@ -251,3 +251,5 @@ const Berita: React.FC = () => {
 };
 
 export default Berita;
+
+

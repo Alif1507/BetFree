@@ -23,7 +23,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Forumss, PaginatedData } from "@/types";
 import InputError from "@/Components/InputError";
 
-function Forum({ forums }): PaginatedData<Forumss> {
+function Forum({ forums }: { forums: PaginatedData<Forumss> }): React.ReactElement {
     const { data, setData, errors, post, processing } = useForm({
         judul: "",
         deskripsi: "",
@@ -55,7 +55,7 @@ function Forum({ forums }): PaginatedData<Forumss> {
                     {/* Forum List Section - LEFT */}
                     <div className="w-full md:w-2/3 flex flex-col gap-10">
                         <AnimatePresence>
-                            {forums.data.map((forum) => (
+                            {forums.data.map((forum: Forumss) => (
                                 <motion.div
                                     key={forum.id}
                                     initial={{ opacity: 0, y: 40 }}
