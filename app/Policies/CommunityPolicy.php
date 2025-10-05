@@ -1,66 +1,23 @@
 <?php
-
 namespace App\Policies;
 
-use App\Models\User;
-use App\Models\community;
-use Illuminate\Auth\Access\Response;
+use App\Models\{community, User};
 
 class CommunityPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return false;
-    }
+  public function view(User $user, community $community): bool {
+    return !$community->is_private || $community->isMember($user);
+  }
 
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, community $community): bool
-    {
-        return false;
-    }
+  public function update(User $user, community $community): bool {
+    return $community->owner_id === $user->id || $community->roleOf($user) === 'moderator';
+  }
 
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
-    {
-        return false;
-    }
+  public function delete(User $user, community $community): bool {
+    return $community->owner_id === $user->id;
+  }
 
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, community $community): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, community $community): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, community $community): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, community $community): bool
-    {
-        return false;
-    }
+  public function join(User $user, community $community): bool {
+    return !$community->is_private; 
+  }
 }

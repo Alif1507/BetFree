@@ -1,64 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\{Community, CommunityPost, CommunityComment};
 use Illuminate\Http\Request;
 
 class CommunityCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+  public function store(Request $req, Community $community, CommunityPost $post) {
+    // hanya member komunitas yang boleh komentar
+    abort_unless($community->isMember($req->user()), 403);
+    $data = $req->validate(['body' => ['required','string','max:5000']]);
+    $post->comments()->create([
+      'user_id' => $req->user()->id,
+      'body' => $data['body'],
+    ]);
+    return back()->with('message','Komentar ditambahkan');
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+  public function destroy(Community $community, CommunityPost $post, CommunityComment $comment) {
+    $this->authorize('delete', $comment);
+    $comment->delete();
+    return back()->with('message','Komentar dihapus');
+  }
 }

@@ -10,6 +10,10 @@ use App\Models\Forum;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\{
+  CommunityController, CommunityMembershipController,
+  CommunityPostController, CommunityCommentController
+};
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -44,6 +48,32 @@ Route::middleware('auth')->group(function () {
     Route::put("/forum/{id}", [ForumController::class, "update"])->name("forum.update");
     Route::get("/forum/{id}/edit", [ForumController::class, "edit"])->name("forum.edit");
     Route::delete("/forum/{id}", [ForumController::class, "destroy"])->name("forum.destroy");
+});
+
+
+Route::middleware(['auth','verified'])->group(function () {
+
+  Route::get('/communities', [CommunityController::class,'index'])->name('communities.index');
+  Route::post('/communities', [CommunityController::class,'store'])->name('communities.store');
+
+  Route::prefix('/c/{community:slug}')->group(function () {
+    Route::get('/', [CommunityController::class,'show'])->name('communities.show');
+    Route::patch('/', [CommunityController::class,'update'])->name('communities.update');
+    Route::delete('/', [CommunityController::class,'destroy'])->name('communities.destroy');
+
+    Route::post('/join',  [CommunityMembershipController::class,'join'])->name('communities.join');
+    Route::post('/leave', [CommunityMembershipController::class,'leave'])->name('communities.leave');
+
+
+    Route::post('/posts', [CommunityPostController::class,'store'])->name('communities.posts.store');
+    Route::patch('/posts/{post}', [CommunityPostController::class,'update'])->name('communities.posts.update');
+    Route::delete('/posts/{post}', [CommunityPostController::class,'destroy'])->name('communities.posts.destroy');
+
+
+    Route::post('/posts/{post}/comments', [CommunityCommentController::class,'store'])->name('communities.posts.comments.store');
+    Route::delete('/posts/{post}/comments/{comment}', [CommunityCommentController::class,'destroy'])->name('communities.posts.comments.destroy');
+  });
+
 });
 
 require __DIR__.'/auth.php';

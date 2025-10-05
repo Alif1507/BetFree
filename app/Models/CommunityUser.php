@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CommunityUser extends Model
+class CommunityUser extends Pivot
 {
-    protected $table = "community_user";
+    protected $table = 'community_users';
 
     protected $fillable = [
-        "community_id",
-        "user_id",
-        "role"
+        'community_id',
+        'user_id',
+        'role',
     ];
-
 }
+
